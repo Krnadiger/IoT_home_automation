@@ -9,15 +9,15 @@
 #define relay5 D4
 /************************* WiFi Access Point *********************************/
 
-#define WLAN_SSID       "kkk"
-#define WLAN_PASS       "kkk123**"
+#define WLAN_SSID       "WIFI_SSID"
+#define WLAN_PASS       "WIFI_Password"
 
 /************************* Adafruit.io Setup *********************************/
 
 #define AIO_SERVER      "io.adafruit.com"
 #define AIO_SERVERPORT  1883                   // use 8883 for SSL
-#define AIO_USERNAME    "krishna_nadiger"
-#define AIO_KEY         "c583ed91b5c44d31b10777289a87a84b"
+#define AIO_USERNAME    "---AIO_USER_NAME---"
+#define AIO_KEY         "---AIO_KEY---"
 
 /************ Global State (you don't need to change this!) ******************/
 
@@ -31,13 +31,6 @@ Adafruit_MQTT_Client mqtt(&client, AIO_SERVER, AIO_SERVERPORT, AIO_USERNAME, AIO
 
 /****************************** Feeds ***************************************/
 
-// Setup a feed called 'photocell' for publishing.
-// Notice MQTT paths for AIO follow the form: <username>/feeds/<feedname>
-//Adafruit_MQTT_Publish photocell1 = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/light");
-//Adafruit_MQTT_Publish photocell2 = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/fan");
-//Adafruit_MQTT_Publish photocell3 = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/television");
-//Adafruit_MQTT_Publish photocell4 = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/water_pump");
-//Adafruit_MQTT_Publish photocell5 = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/feeds/master_key");
 // Setup a feed called 'onoff' for subscribing to changes.
 Adafruit_MQTT_Subscribe onoffbutton1 = Adafruit_MQTT_Subscribe(&mqtt, AIO_USERNAME "/feeds/light");
 Adafruit_MQTT_Subscribe onoffbutton2 = Adafruit_MQTT_Subscribe(&mqtt, AIO_USERNAME "/feeds/fan");
@@ -133,60 +126,7 @@ void loop() {
     
   }
 
- // Now we can publish stuff!
- /* Serial.print(F("\nSending photocell val "));
-  Serial.print(x);
-  Serial.print("...");
-  if (! photocell1.publish(x++)) {
-    Serial.println(F("Failed"));
-  } else {
-    Serial.println(F("OK!"));
-  }
 
-    Serial.print(x);
-  Serial.print("...");
-  if (! photocell2.publish(x++)) {
-    Serial.println(F("Failed"));
-  } else {
-    Serial.println(F("OK!"));
-  }
-
-    Serial.print(x);
-  Serial.print("...");
-  if (! photocell3.publish(x++)) {
-    Serial.println(F("Failed"));
-  } else {
-    Serial.println(F("OK!"));
-  }
-
-    Serial.print(x);
-  Serial.print("...");
-  if (! photocell4.publish(x++)) {
-    Serial.println(F("Failed"));
-  } else {
-    Serial.println(F("OK!"));
-  }
-
-    Serial.print(x);
-  Serial.print("...");
-  if (! photocell5.publish(x++)) {
-    Serial.println(F("Failed"));
-  } else {
-    Serial.println(F("OK!"));
-  }
-
-*/
-  // ping the server to keep the mqtt connection alive
-  // NOT required if you are publishing once every KEEPALIVE seconds
-  /*
-  if(! mqtt.ping()) {
-    mqtt.disconnect();
-  }
-  */
-}
-
-// Function to connect and reconnect as necessary to the MQTT server.
-// Should be called in the loop function and it will take care if connecting.
 void MQTT_connect() {
   int8_t ret;
 
